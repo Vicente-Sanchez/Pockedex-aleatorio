@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script_pockemon.js" type="text/javascript" defer></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Pockedex Web</title>
+
+</head>
+
+<body onload="recuperar()">
+    <div class="container">
+        <h3>Pockedex Web</h3>
+
+        <div class="div-btn">
+            <button name="pockemon" onclick="recuperar()" class="btn btn-danger btn-pck">Recuperar pockemon</button>
+        </div>
+
+        <!-- Card para imprimir los valores devueltos-->
+        <div data-card-pck class="card-pck">
+            <div data-name-pck class="pck-name">
+                Pockedex
+            </div>
+            <div data-img-pck-container class="img-container"><img data-pck-img class="pck-img" src="pockemon invalido.png" />
+            </div>
+            <div data-id-pck></div>
+            <div data-type-pck class="pck-type"></div>
+            <div data-stats-pck class="pck_stats"></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        var usados = new Array();
+
+        function recuperar() {
+
+            buscarPockemon(numeros_aleatorios(1, 898))
+        }
+        setInterval(recuperar, 30000);
+
+        function numeros_aleatorios(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            do {
+                num = Math.floor(Math.random() * (max - min + 1)) + min;
+                repe = repetido(num);
+            } while (repe != false);
+            usados.push(num);
+            return num;
+        }
+
+        function repetido(num) {
+            var repe = false;
+            for (var i = 0; i < usados.length; i++) {
+                if (num == usados[i]) {
+                    repe = true;
+                }
+            }
+            return repe;
+        }
+    </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>
